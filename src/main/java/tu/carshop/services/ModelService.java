@@ -44,7 +44,7 @@ public class ModelService extends BaseService<ModelDTO> {
 
     @Transactional(readOnly = true)
     public Set<ModelDTO> getAllDistinctByBrandName(String brandName) {
-        return modelRepository.findAllByBrand(brandName)
+        return modelRepository.findAllByBrandName(brandName)
                 .stream()
                 .map(modelMapper::toDTO)
                 .collect(Collectors.toSet());
