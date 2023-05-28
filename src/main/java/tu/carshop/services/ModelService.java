@@ -22,9 +22,9 @@ public class ModelService extends BaseService<ModelDTO> {
     @Override
     public List<ModelDTO> getAll() {
         return modelRepository.findAll()
-                .stream()
-                .map(modelMapper::toDTO)
-                .toList();
+            .stream()
+            .map(modelMapper::toDTO)
+            .toList();
     }
 
     @Override
@@ -45,8 +45,8 @@ public class ModelService extends BaseService<ModelDTO> {
     @Transactional(readOnly = true)
     public Set<ModelDTO> getAllDistinctByBrandName(String brandName) {
         return modelRepository.findAllByBrandName(brandName)
-                .stream()
-                .map(modelMapper::toDTO)
-                .collect(Collectors.toSet());
+            .stream()
+            .map(modelMapper::toDTO)
+            .collect(Collectors.toSet());
     }
 }

@@ -33,9 +33,6 @@
                     Username is required.
                 </p>
             </div>
-        </div>
-
-        <div class="row">
             <div class="form-group col-md-6 mb-3">
 
                 <label th:for="firstName" class="text-white font-weight-bold">First Name</label>
@@ -58,9 +55,6 @@
                     Last name is required.
                 </p>
             </div>
-        </div>
-
-        <div class="row">
             <div class="form-group col-md-6 mb-3">
 
                 <label th:for="email" class="text-white font-weight-bold">
@@ -91,7 +85,6 @@
             </div>
 
             <div class="form-group col-md-6 mb-3">
-
                 <label for="confirmPassword" class="text-white font-weight-bold">
                     Confirm Password
                 </label>
@@ -107,7 +100,6 @@
                 <p th:if="${#fields.hasErrors('confirmPassword')}" class="errors alert alert-danger">
                     Passwords does not match.
                 </p>
-
             </div>
         </div>
 

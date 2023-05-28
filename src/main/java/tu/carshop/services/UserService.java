@@ -58,11 +58,8 @@ public class UserService implements UserDetailsService {
     public void register(UserRegisterDTO userRegisterDTO) {
         User entity = userMapper.toEntity(userRegisterDTO);
 
-        UserRole userRole = getUserRole();
-        entity.setRoles(List.of(userRole));
-
-        String encodedPassword = passwordEncoder.encode(entity.getPassword());
-        entity.setPassword(encodedPassword);
+        entity.setRoles(List.of(getUserRole()));
+        entity.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         userRepository.save(entity);
     }
