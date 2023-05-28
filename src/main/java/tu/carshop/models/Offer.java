@@ -29,7 +29,7 @@ public class Offer extends BaseEntity {
     private Engine engine;
 
     @Size(min = 8, max = 512, message = "Image URL must be between 8 and 512 characters length!")
-    @Column(name = "image_url")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private String imageURL;
 
     private int mileage;
