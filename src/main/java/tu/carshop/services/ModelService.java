@@ -28,17 +28,17 @@ public class ModelService extends BaseService<ModelDTO> {
     }
 
     @Override
-    public List<ModelDTO> findById(Long id) {
+    protected ModelDTO findById(Long id) {
         return null;
     }
 
     @Override
-    protected List<ModelDTO> deleteById(Long id) {
-        return null;
+    protected boolean deleteById(Long id) {
+        return false;
     }
 
     @Override
-    protected List<ModelDTO> update() {
+    protected ModelDTO update() {
         return null;
     }
 

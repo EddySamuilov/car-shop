@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class BaseService<T> {
     protected abstract List<T> getAll();
-    protected abstract List<T> findById(Long id);
-    protected abstract List<T> deleteById(Long id);
-    protected abstract List<T> update();
+    protected abstract T findById(Long id);
+    protected abstract boolean deleteById(Long id);
+    protected abstract T update();
 }
