@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tu.carshop.dtos.ModelDTO;
+import tu.carshop.exceptions.ModelNotFoundException;
 import tu.carshop.mapper.ModelMapper;
 import tu.carshop.repositories.ModelRepository;
 
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class ModelService extends BaseService<ModelDTO> {
+    private static final String MODEL_NOT_FOUND_ERROR_MESSAGE = "Model with id %s not found!";
 
     private final ModelRepository modelRepository;
     private final ModelMapper modelMapper;
@@ -29,7 +31,9 @@ public class ModelService extends BaseService<ModelDTO> {
 
     @Override
     public ModelDTO findById(Long id) {
-        return null;
+        return modelRepository.findById(id)
+                .map(modelMapper::toDTO)
+                .orElseThrow(() -> new ModelNotFoundException(String.format(MODEL_NOT_FOUND_ERROR_MESSAGE, id)));
     }
 
     @Override

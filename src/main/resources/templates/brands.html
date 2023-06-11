@@ -27,7 +27,9 @@
                         <th th:text="*{name}">Model Name</th>
                         <th th:text="*{category}">Model Category</th>
                         <th th:text="*{startYear}">Model Start Year</th>
-                        <th th:text="*{endYear}">Model End Year</th>
+                        <th>
+                            <span th:text="*{endYear == null} ? 'N/A' : *{endYear}">Model End Year</span>
+                        </th>
                         <th>
                             <img th:src="*{imageURL}" alt="image" src="/" class="img-thumbnail rounded">
                         </th>

@@ -8,7 +8,7 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @MappedSuperclass
@@ -20,7 +20,7 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Instant created;
+    private LocalDateTime created;
 
-    private Instant modified;
+    private LocalDateTime modified;
 }

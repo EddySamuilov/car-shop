@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ModelDTO {
 
+    private Long id;
+
     @NotBlank
     private String name;
 

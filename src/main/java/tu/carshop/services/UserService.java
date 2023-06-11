@@ -18,6 +18,7 @@ import tu.carshop.models.UserRole;
 import tu.carshop.repositories.UserRepository;
 import tu.carshop.repositories.UserRoleRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,14 +36,18 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, username)));
+        User user = findByUsername(username);
 
         return new AppUser(
             user.getUsername(),
             user.getPassword(),
             getAuthorities(user)
         );
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, username)));
     }
 
     private static List<GrantedAuthority> getAuthorities(User user) {
@@ -53,12 +58,14 @@ public class UserService implements UserDetailsService {
     }
 
     public void register(UserRegisterDTO userRegisterDTO) {
-        User entity = userMapper.toEntity(userRegisterDTO);
+        User user = userMapper.toEntity(userRegisterDTO);
 
-        entity.setRoles(List.of(getUserRole()));
-        entity.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        user.setRoles(List.of(getUserRole()));
+        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        user.setCreated(LocalDateTime.now());
+        user.setModified(LocalDateTime.now());
 
-        userRepository.save(entity);
+        userRepository.save(user);
     }
 
     private UserRole getUserRole() {

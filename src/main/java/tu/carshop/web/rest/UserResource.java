@@ -13,12 +13,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tu.carshop.dtos.UserRegisterDTO;
 import tu.carshop.services.UserService;
 
+import static tu.carshop.common.GlobalConstants.BINDING_RESULT_PATH;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserResource {
-
-    private static final String BINDING_RESULT_PATH = "org.springframework.validation.BindingResult.";
 
     private final UserService userService;
 

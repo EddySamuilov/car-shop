@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 import tu.carshop.dtos.UserRegisterDTO;
 import tu.carshop.models.User;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface UserMapper {
@@ -23,8 +23,8 @@ public interface UserMapper {
 
     @AfterMapping
     default void setTimestamps(UserRegisterDTO userRegisterDTO, @MappingTarget User user) {
-        user.setCreated(Instant.now());
-        user.setModified(Instant.now());
+        user.setCreated(LocalDateTime.now());
+        user.setModified(LocalDateTime.now());
     }
 
 }

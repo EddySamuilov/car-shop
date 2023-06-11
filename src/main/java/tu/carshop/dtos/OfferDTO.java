@@ -23,4 +23,6 @@ public class OfferDTO {
     private LocalDate year;
     private String model;
     private String brand;
+    private LocalDate created;
+    private LocalDate modified;
 }

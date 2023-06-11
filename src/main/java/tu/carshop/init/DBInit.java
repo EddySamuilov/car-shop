@@ -21,8 +21,8 @@ import tu.carshop.repositories.UserRepository;
 import tu.carshop.repositories.UserRoleRepository;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -120,6 +120,15 @@ public class DBInit implements CommandLineRunner {
             bmw
         );
 
+        Model x5 = new Model(
+            "X5",
+            Category.SUV,
+            "https://bmw-autobavaria.bg/files/offers_cars/9r76635.png?bf0a78e42d",
+            LocalDate.of(2003, 11, 1),
+            LocalDate.of(2010, 5, 1),
+            bmw
+        );
+
         Model boing747 = new Model(
             "Boing 707",
             Category.PLANE,
@@ -147,9 +156,9 @@ public class DBInit implements CommandLineRunner {
             volkswagen
         );
 
-        setTimestamps(List.of(audi, bmw, mercedes, boing, opel, volkswagen, a4, s5, eqPower, amg, i8, boing747, vectra, golf2, q8));
+        setTimestamps(List.of(audi, bmw, mercedes, boing, opel, volkswagen, a4, s5, eqPower, amg, i8, boing747, vectra, golf2, q8, x5));
         brandRepository.saveAll(List.of(audi, bmw, mercedes, boing, opel, volkswagen));
-        modelRepository.saveAll(List.of(a4, s5, eqPower, amg, i8, boing747, vectra, golf2, q8));
+        modelRepository.saveAll(List.of(a4, s5, eqPower, amg, i8, boing747, vectra, golf2, q8, x5));
 
         Offer audiA4Offer = Offer.builder()
             .model(modelRepository.findByName("A4"))
@@ -230,8 +239,8 @@ public class DBInit implements CommandLineRunner {
 
     private void setTimestamps(List<? extends BaseEntity> collection) {
         collection.forEach(element -> {
-            element.setCreated(Instant.now());
-            element.setModified(Instant.now());
+            element.setCreated(LocalDateTime.now());
+            element.setModified(LocalDateTime.now());
         });
     }
 }
