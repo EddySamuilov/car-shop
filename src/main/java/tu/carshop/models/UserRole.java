@@ -11,10 +11,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import tu.carshop.enums.Role;
 
+@Data
 @Entity
 @Table(name = "roles")
 @NoArgsConstructor
-@Data
 public class UserRole {
 
     @Id

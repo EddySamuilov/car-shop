@@ -7,8 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import tu.carshop.enums.Engine;
 import tu.carshop.enums.Transmission;
@@ -18,9 +19,10 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@Builder
 @Table(name = "offers")
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
 public class Offer extends BaseEntity {
 
     private String description;
@@ -45,6 +47,6 @@ public class Offer extends BaseEntity {
     @ManyToOne
     private Model model;
 
-//    @ManyToOne
-//    private User seller;
+    @ManyToOne
+    private User seller;
 }

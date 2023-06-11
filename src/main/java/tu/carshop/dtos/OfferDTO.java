@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OfferDTO {
+    private Long id;
     private String description;
     private Engine engine;
     private String imageURL;

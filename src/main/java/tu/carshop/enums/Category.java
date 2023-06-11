@@ -4,6 +4,7 @@ public enum Category {
     CAR,
     BUS,
     TRUCK,
+    SUV,
     MOTORCYCLE,
     PLANE,
     BOAT,

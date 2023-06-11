@@ -36,17 +36,17 @@ public class BrandService extends BaseService<BrandDTO> {
     }
 
     @Override
-    protected BrandDTO findById(Long id) {
+    public BrandDTO findById(Long id) {
         return null;
     }
 
     @Override
-    protected boolean deleteById(Long id) {
+    public boolean deleteById(Long id) {
         return false;
     }
 
     @Override
-    protected BrandDTO update() {
+    public BrandDTO update() {
         return null;
     }
 }

@@ -19,7 +19,7 @@ public class OfferService extends BaseService<OfferDTO> {
 
     @Override
     @Transactional(readOnly = true)
-    protected List<OfferDTO> getAll() {
+    public List<OfferDTO> getAll() {
         return offerRepository.findAll()
                 .stream()
                 .map(offerMapper::toDTO)
@@ -27,19 +27,19 @@ public class OfferService extends BaseService<OfferDTO> {
     }
 
     @Override
-    protected OfferDTO findById(Long id) {
+    public OfferDTO findById(Long id) {
         return offerRepository.findById(id)
                 .map(offerMapper::toDTO)
                 .orElseThrow(() -> new IllegalArgumentException(""));
     }
 
     @Override
-    protected boolean deleteById(Long id) {
+    public boolean deleteById(Long id) {
         return false;
     }
 
     @Override
-    protected OfferDTO update() {
+    public OfferDTO update() {
         return null;
     }
 

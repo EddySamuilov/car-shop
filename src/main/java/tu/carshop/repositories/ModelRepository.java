@@ -9,5 +9,6 @@ import java.util.Set;
 @Repository
 public interface ModelRepository extends JpaRepository<Model, Long> {
 
+    Model findByName(String name);
     Set<Model> findAllByBrandName(String brandName);
 }

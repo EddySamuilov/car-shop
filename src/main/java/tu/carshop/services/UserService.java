@@ -38,21 +38,18 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, username)));
 
-        return mapToSpringUser(user);
-    }
-
-    private static UserDetails mapToSpringUser(User user) {
-        List<GrantedAuthority> authorities = user
-            .getRoles()
-            .stream()
-            .map(userRole -> new SimpleGrantedAuthority("ROLE_" + userRole.getRole().name()))
-            .collect(Collectors.toList());
-
         return new AppUser(
             user.getUsername(),
             user.getPassword(),
-            authorities
+            getAuthorities(user)
         );
+    }
+
+    private static List<GrantedAuthority> getAuthorities(User user) {
+        return user.getRoles()
+            .stream()
+            .map(userRole -> new SimpleGrantedAuthority("ROLE_" + userRole.getRole().name()))
+            .collect(Collectors.toList());
     }
 
     public void register(UserRegisterDTO userRegisterDTO) {
