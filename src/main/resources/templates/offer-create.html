@@ -45,8 +45,8 @@
                 <select th:errorclass="is-invalid" id="engine" name="engine" class="form-control">
                     <option value="">- Select engine type -</option>
                     <option th:each="e : ${T(tu.carshop.enums.Engine).values()}"
-                            th:text="${e}" th:value="${e}" th:selected="${e} == *{engine}"
-                    >Engine type</option>
+                            th:text="${e}" th:value="${e}" th:selected="${e} == *{engine}">Engine type
+                    </option>
                 </select>
                 <p class="errors alert alert-danger invalid-feedback">
                     Engine type is required.
@@ -57,8 +57,8 @@
                 <select th:errorclass="is-invalid" name="transmission" id="transmission" class="form-control">
                     <option value="">- Select transmission type -</option>
                     <option th:each="t : ${T(tu.carshop.enums.Transmission).values()}"
-                            th:text="${t}" th:value="${t}" th:selected="${t} == *{transmission}"
-                    > Transmission type</option>
+                            th:text="${t}" th:value="${t}" th:selected="${t} == *{transmission}">Transmission type
+                    </option>
                 </select>
                 <p class="errors alert alert-danger invalid-feedback">
                     Transmission type is required.

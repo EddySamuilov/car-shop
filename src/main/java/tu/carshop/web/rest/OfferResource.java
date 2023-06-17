@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +45,9 @@ public class OfferResource {
         Principal principal
     ) {
         OfferDTO offer = offerService.findById(id);
+
         model.addAttribute("offer", offer);
+        model.addAttribute("isOwner", principal.getName().equals(offer.getSeller().getUsername()));
         return "details";
     }
 
@@ -59,7 +62,7 @@ public class OfferResource {
     }
 
     @PostMapping("/create")
-    public String addOffer(
+    public String createOffer(
         @AuthenticationPrincipal User user,
         @Valid CreateOfferDTO createOfferDTO,
         BindingResult bindingResult,
@@ -68,7 +71,7 @@ public class OfferResource {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("createOfferDTO", createOfferDTO)
                 .addFlashAttribute(BINDING_RESULT_PATH + "createOfferDTO", bindingResult)
-                .addFlashAttribute("brandsModels", brandService.getAll());
+                .addFlashAttribute("brands", brandService.getAll());
 
             return "redirect:/offers/create";
         }
@@ -77,4 +80,39 @@ public class OfferResource {
         return "redirect:/offers/" + offer.getId() + "/details";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editOffer(
+        @PathVariable("id") Long id,
+        @AuthenticationPrincipal User user,
+        Model model
+    ) {
+        model.addAttribute("offer", offerService.findById(id));
+        return "offer-edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editOffer(
+        @PathVariable("id") Long id,
+        @Valid OfferDTO offer,
+        BindingResult bindingResult,
+        RedirectAttributes redirectAttributes
+    ) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("offer", offer);
+            redirectAttributes.addFlashAttribute(BINDING_RESULT_PATH + "offer", bindingResult);
+
+            return "redirect:/offers/" + id + "/edit/errors";
+        }
+
+        offerService.update(id, offer);
+
+        return "redirect:/offers/" + id + "/details";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteOffer(@PathVariable("id") Long id) {
+        offerService.deleteById(id);
+
+        return "redirect:/offers";
+    }
 }

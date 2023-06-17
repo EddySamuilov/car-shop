@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tu.carshop.dtos.BrandDTO;
+import tu.carshop.dtos.CreateOfferDTO;
 import tu.carshop.dtos.ModelDTO;
 import tu.carshop.models.Brand;
 import tu.carshop.repositories.BrandRepository;
@@ -46,7 +47,7 @@ public class BrandService extends BaseService<BrandDTO> {
     }
 
     @Override
-    public BrandDTO update() {
+    public BrandDTO update(Long id, BrandDTO updateDto) {
         return null;
     }
 }

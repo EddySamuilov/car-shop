@@ -16,25 +16,25 @@
             </div>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text"><span th:text="|Description: *{description}|">• Description</span></div>
+                    <div class="card-text"><span th:text="|Seller: *{seller.getUsername()}|">• Seller </span></div>
                     <div class="card-text"><span th:text="|Mileage: *{mileage}|">• Mileage</span></div>
                     <div class="card-text"><span th:text="|Price: *{price}|">• Price</span></div>
                     <div class="card-text"><span th:text="|Engine type: *{engine}|">• Engine type</span></div>
                     <div class="card-text"><span th:text="|Transmission type: *{transmission}|">• Transmission type</span></div>
                     <div class="card-text"><span th:text="|Year: *{year}|">• Year</span></div>
+                    <div class="card-text"><span th:text="|Description: *{description}|">• Description</span></div>
                     <div class="card-text"><span th:text="|Offer created: *{created}|">• Offer created</span></div>
                     <div class="card-text"><span th:text="|Offer modified: *{modified}|">• Offer modified</span></div>
-<!--                    <div class="card-text"><span th:text="|Seller: *{sellerFullName}|">• Seller - First and Last name</span></div>-->
                 </li>
             </ul>
             <div class="card-body">
-                <div class="row">
-                    <a class="btn btn-link" th:href="@{/offers/{id}/edit(id=*{id})}">Update</a>
-<!--                    <th:block th:if="*{canDelete}">-->
-<!--                        <form th:action="@{/offers/{id}(id=*{id})}" th:method="delete">-->
-<!--                            <input type="submit" class="btn btn-link" value="Delete"/>-->
-<!--                        </form>-->
-<!--                    </th:block>-->
+                <div th:if="${isOwner}" class="row">
+                    <a class="btn btn-link" th:href="@{/offers/{id}/edit(id=*{id})}">Edit</a>
+                    <th:block>
+                        <form th:action="@{/offers/{id}(id=*{id})}" th:method="delete">
+                            <input type="submit" class="btn btn-link" value="Delete"/>
+                        </form>
+                    </th:block>
                 </div>
             </div>
         </div>

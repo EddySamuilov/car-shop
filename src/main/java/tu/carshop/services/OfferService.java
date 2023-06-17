@@ -45,12 +45,25 @@ public class OfferService extends BaseService<OfferDTO> {
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        offerRepository.deleteById(id);
+        return true;
     }
 
     @Override
-    public OfferDTO update() {
-        return null;
+    public OfferDTO update(Long id, OfferDTO updateDto) {
+        Offer offer = offerRepository.findById(id)
+            .orElseThrow(() -> new OfferNotFoundException(String.format(OFFER_NOT_FOUND_ERROR_MESSAGE, id)));
+
+        offer.setDescription(updateDto.getDescription());
+        offer.setEngine(updateDto.getEngine());
+        offer.setMileage(updateDto.getMileage());
+        offer.setImageURL(updateDto.getImageURL());
+        offer.setPrice(updateDto.getPrice());
+        offer.setTransmission(updateDto.getTransmission());
+        offer.setYear(updateDto.getYear());
+        offer.setModified(LocalDateTime.now());
+
+        return offerMapper.toDTO(offerRepository.save(offer));
     }
 
     public OfferDTO create(CreateOfferDTO createOfferDTO, String username) {

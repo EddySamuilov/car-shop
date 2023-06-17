@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import tu.carshop.enums.Engine;
 import tu.carshop.enums.Transmission;
+import tu.carshop.models.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,5 +26,5 @@ public class OfferDTO {
     private String brand;
     private LocalDate created;
     private LocalDate modified;
-    private boolean owner;
+    private User seller;
 }

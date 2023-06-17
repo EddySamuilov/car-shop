@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CreateOfferDTO {
 
-    private Long id;
     @NotNull
     private Long modelId;
     @NotNull
