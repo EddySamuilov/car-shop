@@ -25,4 +25,5 @@ public class OfferDTO {
     private String brand;
     private LocalDate created;
     private LocalDate modified;
+    private boolean owner;
 }

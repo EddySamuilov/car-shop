@@ -19,6 +19,7 @@ public interface OfferMapper {
     @Mapping(target = "seller", ignore = true)
     Offer toEntity(CreateOfferDTO source);
 
+    @Mapping(target = "owner", ignore = true)
     @Mapping(target = "model", source = "source.model.name")
     @Mapping(target = "brand", source = "source.model.brand.name")
     @Mapping(target = "created", source = "source.created", qualifiedByName = "toDate")

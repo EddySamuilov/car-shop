@@ -1,5 +1,6 @@
 package tu.carshop.config;
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import tu.carshop.enums.Role;
 
 @Configuration
 @EnableWebSecurity
@@ -17,6 +19,7 @@ public class ApplicationSecurityConfiguration {
         http.authorizeHttpRequests((auth) -> auth
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/", "/users/login", "/users/register").permitAll()
+                .requestMatchers("/statistics").hasAnyRole(Role.ADMIN.name())
                 .requestMatchers("/**").authenticated()
             )
             .formLogin(loginConfig -> loginConfig
