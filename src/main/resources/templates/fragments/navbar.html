@@ -15,29 +15,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
                 <li class="nav-item dropdown">
-                    <div>
-                        <form th:method="get">
-                            <select onchange="this.form.submit()" id="lang" name="lang"
-                                    class="nav-link dropdown-toggle form-control bg-dark text-white border-0"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <option class="dropdown-item text-white" value="en_US"
-                                        th:selected="${#locale.toString()} == 'en_US'">English</option>
-                                <option class="dropdown-item text-white" value="bg_BG"
-                                        th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                                <option class="dropdown-item text-white" value="de_DE"
-                                        th:selected="${#locale.toString()} == 'de_DE'">Deutch</option>
-                            </select>
-                        </form>
+                    <form th:method="get">
+                        <select onchange="this.form.submit()" id="lang" name="lang"
+                                class="nav-link dropdown-toggle form-control bg-dark text-white border-0"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <option class="dropdown-item text-white" value="en_US"
+                                    th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option class="dropdown-item text-white" value="bg_BG"
+                                    th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                            <option class="dropdown-item text-white" value="de_DE"
+                                    th:selected="${#locale.toString()} == 'de_DE'">Deutch</option>
+                        </select>
+                    </form>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarBrands" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{brands}">Brands
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/brands}" th:text="#{brands}">Show all brands</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/brands/create}" th:text="#{createBrand}">Create brand</a>
                     </div>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/brands}" th:text="#{brands}"></a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/offers/create}" th:text="#{createOffer}">Create Offer</a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/offers}" th:text="#{offers}"></a>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarOffers" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{offers}">Offers
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/offers}" th:text="#{offers}">Offers</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"th:href="@{/offers/create}" th:text="#{createOffer}">Create Offer</a>
+                    </div>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
