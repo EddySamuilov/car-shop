@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tu.carshop.dtos.CreateOfferDTO;
 import tu.carshop.dtos.OfferDTO;
-import tu.carshop.exceptions.OfferNotFoundException;
+import tu.carshop.exceptions.ObjectNotFoundException;
 import tu.carshop.mapper.OfferMapper;
 import tu.carshop.models.Model;
 import tu.carshop.models.Offer;
@@ -40,7 +40,7 @@ public class OfferService extends BaseService<OfferDTO> {
     public OfferDTO findById(Long id) {
         return offerRepository.findById(id)
                 .map(offerMapper::toDTO)
-                .orElseThrow(() -> new OfferNotFoundException(String.format(OFFER_NOT_FOUND_ERROR_MESSAGE, id)));
+                .orElseThrow(() -> new ObjectNotFoundException(String.format(OFFER_NOT_FOUND_ERROR_MESSAGE, id)));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class OfferService extends BaseService<OfferDTO> {
     @Override
     public OfferDTO update(Long id, OfferDTO updateDto) {
         Offer offer = offerRepository.findById(id)
-            .orElseThrow(() -> new OfferNotFoundException(String.format(OFFER_NOT_FOUND_ERROR_MESSAGE, id)));
+            .orElseThrow(() -> new ObjectNotFoundException(String.format(OFFER_NOT_FOUND_ERROR_MESSAGE, id)));
 
         offer.setDescription(updateDto.getDescription());
         offer.setEngine(updateDto.getEngine());

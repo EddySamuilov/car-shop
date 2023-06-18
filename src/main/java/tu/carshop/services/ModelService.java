@@ -3,9 +3,8 @@ package tu.carshop.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tu.carshop.dtos.CreateOfferDTO;
 import tu.carshop.dtos.ModelDTO;
-import tu.carshop.exceptions.ModelNotFoundException;
+import tu.carshop.exceptions.ObjectNotFoundException;
 import tu.carshop.mapper.ModelMapper;
 import tu.carshop.repositories.ModelRepository;
 
@@ -34,7 +33,7 @@ public class ModelService extends BaseService<ModelDTO> {
     public ModelDTO findById(Long id) {
         return modelRepository.findById(id)
                 .map(modelMapper::toDTO)
-                .orElseThrow(() -> new ModelNotFoundException(String.format(MODEL_NOT_FOUND_ERROR_MESSAGE, id)));
+                .orElseThrow(() -> new ObjectNotFoundException(String.format(MODEL_NOT_FOUND_ERROR_MESSAGE, id)));
     }
 
     @Override
