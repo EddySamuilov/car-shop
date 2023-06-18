@@ -14,14 +14,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
+                <li>
+                    <form th:method="get">
+                        <label th:text="#{language}" for="lang"></label>
+                        <select onchange="this.form.submit()" id="lang" name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/brands}">Brands</a>
+                    <a class="nav-link" th:href="@{/brands}" th:text="#{brandss}"></a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link" th:href="@{/offers/create}">Create Offer</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/offers}">Offers</a>
+                    <a class="nav-link" th:href="@{/offers}" th:text="#{off}"></a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
