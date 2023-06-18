@@ -14,39 +14,45 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
-                <li>
-                    <form th:method="get">
-                        <label th:text="#{language}" for="lang"></label>
-                        <select onchange="this.form.submit()" id="lang" name="lang">
-                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                        </select>
-                    </form>
+                <li class="nav-item dropdown">
+                    <div>
+                        <form th:method="get">
+                            <select onchange="this.form.submit()" id="lang" name="lang"
+                                    class="nav-link dropdown-toggle form-control bg-dark text-white border-0"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <option class="dropdown-item text-white" value="en_US"
+                                        th:selected="${#locale.toString()} == 'en_US'">English</option>
+                                <option class="dropdown-item text-white" value="bg_BG"
+                                        th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                                <option class="dropdown-item text-white" value="de_DE"
+                                        th:selected="${#locale.toString()} == 'de_DE'">Deutch</option>
+                            </select>
+                        </form>
+                    </div>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/brands}" th:text="#{brandss}"></a>
+                    <a class="nav-link" th:href="@{/brands}" th:text="#{brands}"></a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/offers/create}">Create Offer</a>
+                    <a class="nav-link" th:href="@{/offers/create}" th:text="#{createOffer}">Create Offer</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/offers}" th:text="#{off}"></a>
+                    <a class="nav-link" th:href="@{/offers}" th:text="#{offers}"></a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{profile}">Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/users/profile}">My profile</a>
-                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/statistics}">Statistics</a>
+                        <a class="dropdown-item" th:href="@{/users/profile}" th:text="#{myProfile}">My profile</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/statistics}" th:text="#{stats}">Statistics</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/users/logout}">Logout</a>
+                        <a class="dropdown-item" th:href="@{/users/logout}" th:text="#{logout}">Logout</a>
                     </div>
                 </li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <div class="form-inline my-2 my-lg-0 px-3">
-                        <div class="text-white">Welcome, <th:block sec:authentication="name"></th:block>!</div>
                         <form th:action="@{/users/logout}" th:method="post">
                             <input class="btn btn-link nav-link" type="submit" value="Logout">
                         </form>
@@ -54,10 +60,10 @@
                 </li>
 
                 <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a class="nav-link" th:href="@{/users/register}">Register</a>
+                    <a class="nav-link" th:href="@{/users/register}" th:text="#{register}">Register</a>
                 </li>
                 <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a class="nav-link" th:href="@{/users/login}">Login</a>
+                    <a class="nav-link" th:href="@{/users/login}" th:text="#{login}">Login</a>
                 </li>
 
             </ul>

@@ -57,3 +57,22 @@ form.main-form {
 .logged-user {
      color: white;
 }
+
+/* Adjust the styles for your specific footer design */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 5px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+

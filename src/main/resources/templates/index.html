@@ -7,6 +7,12 @@
 <body>
 <div th:replace="~{fragments/navbar::nav}"></div>
 
+<div class="container-fluid">
+    <h3 class="text-center text-white mt-10" th:text="#{greeting}"></h3>
+    <h3 class="text-center text-white mt-10" sec:authorize="isAuthenticated()" sec:authentication="name"></h3>
+    <h3 class="text-center text-white mt-10" sec:authorize="isAnonymous()" th:text="Stranger"></h3>
+</div>
+
 
 <div th:replace="~{fragments/footer::footer}"></div>
 
