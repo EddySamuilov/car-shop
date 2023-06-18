@@ -1,6 +1,6 @@
 package tu.carshop.services;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tu.carshop.dtos.BrandDTO;
@@ -17,15 +17,20 @@ import java.util.Set;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class BrandService extends BaseService<BrandDTO> {
 
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;
     private final ModelService modelService;
 
-    @Transactional(readOnly = true)
+    public BrandService(BrandRepository brandRepository, BrandMapper brandMapper, @Lazy ModelService modelService) {
+        this.brandRepository = brandRepository;
+        this.brandMapper = brandMapper;
+        this.modelService = modelService;
+    }
+
     @Override
+    @Transactional(readOnly = true)
     public List<BrandDTO> getAll() {
         List<Brand> brands = brandRepository.findAll();
 
@@ -60,5 +65,9 @@ public class BrandService extends BaseService<BrandDTO> {
         brand.setModified(LocalDateTime.now());
 
         return brandMapper.toDTO(brandRepository.save(brand));
+    }
+
+    public Brand getBrandByName(String brandName) {
+        return brandRepository.findByName(brandName);
     }
 }

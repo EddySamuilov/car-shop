@@ -28,12 +28,15 @@
                         </select>
                     </form>
                 </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/models/create}" th:text="#{createModel}">Create model</a>
+                </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarBrands" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{brands}">Brands
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/brands}" th:text="#{brands}">Show all brands</a>
+                        <a class="dropdown-item" th:href="@{/brands}" th:text="#{allBrands}">Show all brands</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" th:href="@{/brands/create}" th:text="#{createBrand}">Create brand</a>
                     </div>
@@ -43,7 +46,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{offers}">Offers
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/offers}" th:text="#{offers}">Offers</a>
+                        <a class="dropdown-item" th:href="@{/offers}" th:text="#{allOffers}">Show all offers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"th:href="@{/offers/create}" th:text="#{createOffer}">Create Offer</a>
                     </div>

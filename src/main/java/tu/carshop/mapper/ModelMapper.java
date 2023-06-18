@@ -3,6 +3,7 @@ package tu.carshop.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+import tu.carshop.dtos.CreateModelDTO;
 import tu.carshop.dtos.ModelDTO;
 import tu.carshop.models.Model;
 
@@ -11,4 +12,6 @@ public interface ModelMapper {
 
     ModelDTO toDTO(Model source);
 
+    @Mapping(target = "brand", ignore = true)
+    Model toEntity(CreateModelDTO source);
 }

@@ -6,4 +6,6 @@ import tu.carshop.models.Brand;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
+
+    Brand findByName(String name);
 }

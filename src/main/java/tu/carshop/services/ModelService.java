@@ -3,9 +3,12 @@ package tu.carshop.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tu.carshop.dtos.CreateModelDTO;
 import tu.carshop.dtos.ModelDTO;
 import tu.carshop.exceptions.ObjectNotFoundException;
 import tu.carshop.mapper.ModelMapper;
+import tu.carshop.models.Brand;
+import tu.carshop.models.Model;
 import tu.carshop.repositories.ModelRepository;
 
 import java.util.List;
@@ -20,8 +23,10 @@ public class ModelService extends BaseService<ModelDTO> {
 
     private final ModelRepository modelRepository;
     private final ModelMapper modelMapper;
+    private final BrandService brandService;
 
     @Override
+    @Transactional(readOnly = true)
     public List<ModelDTO> getAll() {
         return modelRepository.findAll()
             .stream()
@@ -52,5 +57,14 @@ public class ModelService extends BaseService<ModelDTO> {
             .stream()
             .map(modelMapper::toDTO)
             .collect(Collectors.toSet());
+    }
+
+    public void create(CreateModelDTO createModelDTO) {
+        Brand brand = brandService.getBrandByName(createModelDTO.getBrandName());
+
+        Model model = modelMapper.toEntity(createModelDTO);
+        model.setBrand(brand);
+
+        modelRepository.save(model);
     }
 }
