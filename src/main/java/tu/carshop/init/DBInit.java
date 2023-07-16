@@ -151,7 +151,7 @@ public class DBInit implements CommandLineRunner {
         Model golf2 = new Model(
             "Golf 2",
             Category.CAR,
-            "https://www.volkswagenag.com/content/dam/online-kommunikation/brands/corporate/world/presence/stories/2019/10/die-glorreichen-sieben/Golf-2-front.jpg",
+            "https://static.dir.bg/uploads/images/2017/12/17/2526994/768x576.jpg?_=1681250719",
             LocalDate.of(1983, 12, 3),
             LocalDate.of(1991, 11, 21),
             volkswagen
