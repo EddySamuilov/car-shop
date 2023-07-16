@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tu.carshop.dtos.UserProfileDTO;
 import tu.carshop.dtos.UserRegisterDTO;
 import tu.carshop.enums.Role;
 import tu.carshop.mapper.UserMapper;
@@ -74,5 +75,25 @@ public class UserService implements UserDetailsService {
             .filter(role -> role.getRole() == Role.USER)
             .findAny()
             .orElseThrow();
+    }
+
+    public UserProfileDTO getUserProfile(String username) {
+        User user = findByUsername(username);
+        return userMapper.toDTO(user);
+    }
+
+    public void update(UserProfileDTO userProfileDTO) {
+        User user = findByUsername(userProfileDTO.getUsername());
+
+        user.setUsername(userProfileDTO.getUsername());
+        user.setFirstName(userProfileDTO.getFirstName());
+        user.setLastName(userProfileDTO.getLastName());
+        user.setEmail(userProfileDTO.getEmail());
+
+        userRepository.save(user);
+    }
+
+    public void deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
     }
 }

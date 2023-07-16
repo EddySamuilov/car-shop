@@ -5,6 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
+import tu.carshop.dtos.UserProfileDTO;
 import tu.carshop.dtos.UserRegisterDTO;
 import tu.carshop.models.User;
 
@@ -27,4 +28,5 @@ public interface UserMapper {
         user.setModified(LocalDateTime.now());
     }
 
+    UserProfileDTO toDTO(User source);
 }

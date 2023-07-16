@@ -1,6 +1,5 @@
 package tu.carshop.config;
 
-import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +34,7 @@ public class ApplicationSecurityConfiguration {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
             );
+
         return http.build();
     }
 }

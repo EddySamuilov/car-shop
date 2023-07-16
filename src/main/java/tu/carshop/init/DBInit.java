@@ -46,11 +46,11 @@ public class DBInit implements CommandLineRunner {
         UserRole adminRole = new UserRole();
         adminRole.setRole(Role.ADMIN);
         UserRole userRole = new UserRole();
-        adminRole.setRole(Role.USER);
+        userRole.setRole(Role.USER);
         userRoleRepository.saveAll(List.of(adminRole, userRole));
 
         User admin = new User();
-        admin.setRoles(List.of(adminRole));
+        admin.setRoles(List.of(adminRole, userRole));
         admin.setUsername("admin");
         admin.setEmail("admin@abv.sc");
         admin.setFirstName("admin");
