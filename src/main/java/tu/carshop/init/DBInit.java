@@ -55,6 +55,7 @@ public class DBInit implements CommandLineRunner {
         admin.setEmail("admin@abv.sc");
         admin.setFirstName("admin");
         admin.setLastName("adminov");
+        admin.setImageURL("https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/330px-SpongeBob_SquarePants_character.svg.png");
         admin.setPassword(passwordEncoder.encode("admin"));
         setTimestamps(List.of(admin));
         userRepository.save(admin);

@@ -65,6 +65,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         user.setCreated(LocalDateTime.now());
         user.setModified(LocalDateTime.now());
+        user.setImageURL("https://www.vecteezy.com/free-vector/user-profile");
 
         userRepository.save(user);
     }
@@ -89,6 +90,8 @@ public class UserService implements UserDetailsService {
         user.setFirstName(userProfileDTO.getFirstName());
         user.setLastName(userProfileDTO.getLastName());
         user.setEmail(userProfileDTO.getEmail());
+        user.setImageURL(userProfileDTO.getImageURL());
+        user.setModified(LocalDateTime.now());
 
         userRepository.save(user);
     }

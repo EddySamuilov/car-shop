@@ -33,7 +33,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", length = 512)
     private String imageURL;
 
     @ManyToMany(fetch = FetchType.EAGER)

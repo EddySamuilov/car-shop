@@ -86,7 +86,7 @@ public class UserResource {
         Model model
     ) {
         model.addAttribute("user", userService.findByUsername(username));
-        return "user-edit";
+        return "user-ed";
     }
 
     @PostMapping("/profile/{username}/edit")
