@@ -1,6 +1,6 @@
 package tu.carshop.services;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -98,5 +98,13 @@ public class UserService implements UserDetailsService {
 
     public void deleteByUsername(String username) {
         userRepository.deleteByUsername(username);
+    }
+
+    /**
+     * Dummy method which retrieves users count
+     * @return users count
+     */
+    public int getUsersCount() {
+        return (int) userRepository.count();
     }
 }

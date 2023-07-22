@@ -75,6 +75,9 @@ public class OfferService extends BaseService<OfferDTO> {
         offer.setModel(model);
         offer.setCreated(LocalDateTime.now());
         offer.setModified(LocalDateTime.now());
+        if (createOfferDTO.getImageURL() == null) {
+            offer.setImageURL("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png");
+        }
 
         return offerMapper.toDTO(offerRepository.save(offer));
     }
