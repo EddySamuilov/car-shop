@@ -7,16 +7,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tu.carshop.dtos.CreateOfferDTO;
 import tu.carshop.dtos.OfferDTO;
+import tu.carshop.dtos.PostDTO;
 import tu.carshop.services.BrandService;
 import tu.carshop.services.OfferService;
+import tu.carshop.services.PostService;
 
 import java.security.Principal;
 import java.util.List;
@@ -30,6 +28,7 @@ public class OfferResource {
 
     private final OfferService offerService;
     private final BrandService brandService;
+    private final PostService postService;
 
     @GetMapping
     public List<OfferDTO> getAllOffers(Model model) {
@@ -45,9 +44,14 @@ public class OfferResource {
         Principal principal
     ) {
         OfferDTO offer = offerService.findById(id);
+        List<PostDTO> posts = postService.getAllPostsForOffer(id);
+        PostDTO postDTO = new PostDTO();
+        postDTO.setOfferId(id);
 
         model.addAttribute("offer", offer);
         model.addAttribute("isOwner", principal.getName().equals(offer.getSeller().getUsername()));
+        model.addAttribute("posts", posts);
+        model.addAttribute("newPost", postDTO);
         return "details";
     }
 

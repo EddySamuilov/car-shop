@@ -1,11 +1,6 @@
 package tu.carshop.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +11,7 @@ import tu.carshop.enums.Transmission;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -49,4 +45,7 @@ public class Offer extends BaseEntity {
 
     @ManyToOne
     private User seller;
+
+    @OneToMany
+    private List<Post> posts;
 }

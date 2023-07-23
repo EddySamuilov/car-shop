@@ -1,14 +1,12 @@
 package tu.carshop.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -38,4 +36,9 @@ public class User extends BaseEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRole> roles;
+
+    @OneToMany(mappedBy = "author")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<Post> posts = new ArrayList<>();
 }

@@ -1,10 +1,6 @@
 package tu.carshop.mapper;
 
-import org.mapstruct.AfterMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import tu.carshop.dtos.UserProfileDTO;
 import tu.carshop.dtos.UserRegisterDTO;
 import tu.carshop.models.User;
@@ -20,6 +16,7 @@ public interface UserMapper {
     @Mapping(target = "imageURL", ignore = true)
     @Mapping(target = "created", ignore = true)
     @Mapping(target = "modified", ignore = true)
+    @Mapping(target = "posts", ignore = true)
     User toEntity(UserRegisterDTO source);
 
     @AfterMapping

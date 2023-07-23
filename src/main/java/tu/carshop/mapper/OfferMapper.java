@@ -17,10 +17,12 @@ public interface OfferMapper {
 
     @Mapping(target = "model", ignore = true)
     @Mapping(target = "seller", ignore = true)
+    @Mapping(target = "posts", ignore = true)
     Offer toEntity(CreateOfferDTO source);
 
     @Mapping(target = "model", ignore = true)
     @Mapping(target = "seller", ignore = true)
+    @Mapping(target = "posts", ignore = true)
     Offer toEntity(OfferDTO source);
 
     @Mapping(target = "model", source = "source.model.name")
