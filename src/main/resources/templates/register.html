@@ -15,21 +15,15 @@
 
         <div class="row">
             <div class="form-group col-md-6 mb-3">
-
                 <label th:for="username" class="text-white font-weight-bold">Username</label>
-
                 <input type="text" th:field="*{username}" class="form-control" placeholder="Username"/>
-
                 <p th:if="${#fields.hasErrors('username')}" class="errors alert alert-danger">
                     Username is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
-
                 <label th:for="firstName" class="text-white font-weight-bold">First Name</label>
-
                 <input type="text" th:field="*{firstName}" class="form-control" placeholder="First name"/>
-
                 <p th:if="${#fields.hasErrors('firstName')}" class="errors alert alert-danger">
                     First name is required.
                 </p>
@@ -39,19 +33,15 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label th:for="lastName" class="text-white font-weight-bold">Last Name</label>
-
                 <input th:field="*{lastName}" class="form-control" placeholder="Last name"/>
-
                 <p th:if="${#fields.hasErrors('lastName')}" class="errors alert alert-danger">
                     Last name is required.
                 </p>
             </div>
             <div class="form-group col-md-6 mb-3">
-
                 <label th:for="email" class="text-white font-weight-bold">
                     Email
                 </label>
-
                 <input th:field="*{email}" class="form-control" placeholder="Email" th:value="*{email}"/>
                 <p th:if="${#fields.hasErrors('email')}" class="errors alert alert-danger">
                     Valid email is required.
@@ -83,10 +73,8 @@
                 <input id="confirmPassword"
                        name="confirmPassword"
                        type="password"
-                       min="2"
-                       max="20"
                        class="form-control"
-                       placeholder="Password"/>
+                       placeholder="Confirm password"/>
 
                 <p th:if="${#fields.hasErrors('confirmPassword')}" class="errors alert alert-danger">
                     Passwords does not match.

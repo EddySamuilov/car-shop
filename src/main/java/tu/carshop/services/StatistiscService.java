@@ -18,8 +18,8 @@ public class StatistiscService {
     // Not the best way to do this but experimenting with different approaches in order to retrieve count
     return new StatisticsDTO(
         userService.getUsersCount(),
-        brandService.getAll().size(),
-        offerService.getAll().size()
+        offerService.getAll().size(),
+        brandService.getAll().size()
     );
   }
 }

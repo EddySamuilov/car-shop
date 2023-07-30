@@ -98,6 +98,7 @@ public class UserService implements UserDetailsService {
 
     public void deleteByUsername(String username) {
         userRepository.deleteByUsername(username);
+        // TODO
     }
 
     /**

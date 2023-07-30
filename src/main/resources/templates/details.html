@@ -50,6 +50,10 @@
                         <div class="card-text"><span th:text="|Title: *{title}|">• Title </span></div>
                         <div class="card-text"><span th:text="|Content: *{content}|">• Content </span></div>
                         <div class="card-text"><span th:text="|Author: *{author.getUsername()}|">• author </span></div>
+                        <div class="card-img-wrapper">
+                            <img class="card-img-top" th:src="*{author.getImageURL()}" alt="Car image">
+                        </div>
+<!--                        TODO -> Place the image on the left-->
                     </li>
                 </ul>
             </div>

@@ -2,7 +2,6 @@ package tu.carshop.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tu.carshop.dtos.PostDTO;
 import tu.carshop.models.Post;
 
 import java.util.List;
