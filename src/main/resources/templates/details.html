@@ -47,11 +47,17 @@
             <div th:each="post : ${posts}" th:object="${post}" class="card-body pb-1">
                 <ul class="offer-details list-group list-group-flush">
                     <li class="list-group-item">
-                        <div class="card-text"><span th:text="|Title: *{title}|">• Title </span></div>
-                        <div class="card-text"><span th:text="|Content: *{content}|">• Content </span></div>
-                        <div class="card-text"><span th:text="|Author: *{author.getUsername()}|">• author </span></div>
-                        <div class="card-img-wrapper">
-                            <img class="card-img-top" th:src="*{author.getImageURL()}" alt="Car image">
+                        <div class="row">
+                            <div class="form-group col-md-9 mb-3">
+                                <div class="card-text"><span th:text="|Title: *{title}|">• Title </span></div>
+                                <div class="card-text"><span th:text="|Content: *{content}|">• Content </span></div>
+                                <div class="card-text"><span th:text="|Author: *{author.getUsername()}|">• author </span></div>
+                            </div>
+                            <div class="form-group col-md-3 mb-3">
+                                <div class="card-img-wrapper">
+                                    <img class="card-img-top" th:src="*{author.getImageURL()}" alt="Car image">
+                                </div>
+                            </div>
                         </div>
 <!--                        TODO -> Place the image on the left-->
                     </li>
