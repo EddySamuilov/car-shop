@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         user.setCreated(LocalDateTime.now());
         user.setModified(LocalDateTime.now());
-        user.setImageURL("https://www.vecteezy.com/free-vector/user-profile");
+        user.setImageURL("https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/1200px-Patrick_Star.svg.png");
 
         userRepository.save(user);
     }

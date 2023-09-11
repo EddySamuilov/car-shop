@@ -33,6 +33,8 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation:3.1.0'
+	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
 
 	compileOnly "org.mapstruct:mapstruct:1.5.3.Final"
 	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
