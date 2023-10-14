@@ -2,6 +2,10 @@ package tu.carshop.web.rest;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tu.carshop.dtos.CreateOfferDTO;
 import tu.carshop.dtos.OfferDTO;
 import tu.carshop.dtos.PostDTO;
+import tu.carshop.events.OfferCreatedEvent;
 import tu.carshop.services.BrandService;
 import tu.carshop.services.OfferService;
 import tu.carshop.services.PostService;
@@ -26,13 +31,24 @@ import static tu.carshop.common.GlobalConstants.BINDING_RESULT_PATH;
 @RequestMapping("/offers")
 public class OfferResource {
 
+    public static final Logger LOG = LoggerFactory.getLogger(OfferResource.class);
+
     private final OfferService offerService;
     private final BrandService brandService;
     private final PostService postService;
+    private final ApplicationEventPublisher eventPublisher;
 
+    @Cacheable("offers") // Don't forget to enable caching in the app
     @GetMapping
     public List<OfferDTO> getAllOffers(Model model) {
         List<OfferDTO> offers = offerService.getAll();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ignored) {
+            LOG.warn("Something WR!");
+        }
+
         model.addAttribute("offers", offers);
         return offers;
     }
@@ -61,6 +77,10 @@ public class OfferResource {
             model.addAttribute("createOfferDTO", new CreateOfferDTO())
                 .addAttribute("brands", brandService.getAll());
         }
+
+        eventPublisher.publishEvent(
+            new OfferCreatedEvent(this)
+        );
 
         return "offer-create";
     }

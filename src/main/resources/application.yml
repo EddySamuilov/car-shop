@@ -29,3 +29,6 @@ logging:
         sql: warn
       nodeValue: WARN
     blog: WARN
+
+schedulers:
+  cron: "*/10 * * * * *"
