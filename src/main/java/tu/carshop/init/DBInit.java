@@ -218,7 +218,7 @@ public class DBInit implements CommandLineRunner {
             .year(LocalDate.of(1999, 1, 1))
             .description("In a very good condition. Real 555110km. Manual transmission. Get in the car and ride!")
             .seller(userRepository.findByUsername("admin").orElse(null))
-            .imageURL("https://www.volkswagenag.com/content/dam/online-kommunikation/brands/corporate/world/presence/stories/2019/10/die-glorreichen-sieben/Golf-2-front.jpg")
+            .imageURL("https://static.dir.bg/uploads/images/2017/12/17/2526994/768x576.jpg?_=1681250719")
             .build();
 
         Offer q8Offer = Offer.builder()

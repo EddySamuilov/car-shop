@@ -46,6 +46,6 @@ public class Offer extends BaseEntity {
     @ManyToOne
     private User seller;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Post> posts;
 }
